@@ -1,0 +1,82 @@
+/* client/Styles/Cart.module.css */
+.cartContainer {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+body {
+  background-color: #111827;
+}
+
+.cartTitle {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.itemName {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.itemQuantityPrice {
+  font-weight: 400;
+  color: #374151;
+}
+
+.cancelButton {
+  padding: 0.3rem 0.6rem;
+  margin-left: 1rem;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cancelButton:hover {
+  background-color: #dc2626;
+}
+
+.total {
+  text-align: right;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  color: #111827;
+}
+
+.confirmButton {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.confirmButton:hover {
+  background-color: #2563eb;
+}

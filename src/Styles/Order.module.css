@@ -1,0 +1,58 @@
+.orderContainer {
+  padding: 20px;
+  background-color: #0a0a0a;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.orderTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #16a34a; /* vert pour confirmation */
+}
+
+.orderStatus{
+  color: white;
+}
+.orderMessage {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: aliceblue;
+}
+
+.orderList {
+  list-style-type: disc;
+  padding-left: 0;
+  margin-bottom: 20px;
+  color: aliceblue;
+}
+
+.orderItem {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  color: aliceblue;
+}
+
+.orderTotal {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  color: aliceblue;
+}
+
+.btnBack {
+  display: inline-block;
+  background-color: rgb(206, 162, 19);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.btnBack:hover {
+  background-color: rgb(119, 92, 1);
+}

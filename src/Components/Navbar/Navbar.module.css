@@ -1,0 +1,66 @@
+.navbar {
+  display: flex;
+  justify-content: space-between; /* logo à gauche, liens à droite */
+  align-items: center;
+  padding: 20px 30px;
+  background-color: #080808; /* couleur foncée */
+  color: white;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background 0.3s ease;
+}
+
+.navbar:hover {
+  background-color: #111; /* léger effet au survol */
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.links {
+  display: flex;
+  gap: 25px;
+}
+
+.link {
+  text-decoration: none;
+  color: #fdfafa;
+  font-weight: 500;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.link:hover {
+  color: rgb(206, 162, 19); /* couleur tomate au survol */
+  transform: scale(1.05); /* léger agrandissement */
+}
+
+.active {
+  border-bottom: 2px solid white;
+  padding-bottom: 2px;
+}
+
+/* Responsive : menu devient vertical sur petit écran */
+@media (max-width: 768px) {
+  .links {
+    flex-direction: column;
+    gap: 15px;
+    background: #080808;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 200px;
+    padding: 15px;
+    border-radius: 8px;
+    display: none; /* à afficher avec JS pour toggle */
+  }
+
+  .links.show {
+    display: flex;
+  }
+}

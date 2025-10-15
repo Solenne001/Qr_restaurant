@@ -1,0 +1,139 @@
+.ordersContainer {
+  padding: 2rem;
+  background-color: #f5f6fa;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ordersTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #2f3640;
+  text-align: center;
+}
+
+.ordersList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.orderCard {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.orderCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.orderItems {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.orderItems li {
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+}
+
+.orderFooter {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  font-weight: 500;
+}
+
+.btnGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  gap: 0.5rem;
+}
+
+.btnStatus {
+  flex: 1;
+  margin: 0 0.25rem;
+  padding: 0.5rem 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.btnStatus:hover { opacity: 0.85; }
+
+.status-Reçue { background: #e1b12c; color: #fff; }
+.status-En-préparation { background: #487eb0; color: #fff; }
+.status-Prête { background: #00a8ff; color: #fff; }
+.status-Terminé { background: #44bd32; color: #fff; }
+
+.dateSection {
+  margin-bottom: 2rem;
+}
+
+.dateTitle {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ff6600;
+  margin-bottom: 1rem;
+}
+
+.orderTime {
+  color: #777;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+/* 🔹 Séparateur de date entre les journées */
+.dateSeparator {
+  margin: 2rem 0 1rem;
+  text-align: center;
+  position: relative;
+}
+
+.dateSeparator h2 {
+  display: inline-block;
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  text-transform: capitalize;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* 🔹 Ligne fine horizontale derrière la date */
+.dateSeparator::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #ddd;
+  z-index: -1;
+}
+
+/* 🔹 Espacement et style général pour la carte commande */
+.orderCard {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.orderCard:hover {
+  transform: translateY(-2px);
+}

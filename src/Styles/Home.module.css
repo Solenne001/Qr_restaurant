@@ -1,0 +1,51 @@
+.hero {
+  height: 94vh;
+  /* background: url("../Assets/table.jpg") no-repeat center/cover; */
+  background: url("../Assets/table.jpg") no-repeat center center /contain;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: brightness(1.2); /* rend l’image 20% plus claire */
+}
+
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255,255,255,0.15); /* voile blanc léger */
+}
+
+.overlay {
+  position: relative;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 40px;
+  border-radius: 12px;
+  color: white;
+}
+.title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+}
+
+.button {
+  padding: 14px 28px;
+  background-color: #ff6347;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button:hover {
+  background-color: #e5533d;
+}

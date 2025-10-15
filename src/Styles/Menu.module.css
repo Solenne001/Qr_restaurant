@@ -1,0 +1,155 @@
+
+.menuContainer {
+  padding: 20px;
+  background-color: #010203;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.menuTitle {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 40px 0 20px;
+  color: #faf9f9;
+}
+
+.menuSection {
+  margin-bottom: 50px;
+}
+
+.menuList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.menuCard {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.menuCard:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 14px rgba(0,0,0,0.15);
+}
+
+.menuImage {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.menuContent {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.itemName {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.itemDesc {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.itemPrice {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.btnAdd {
+  background: rgb(206, 162, 19);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  align-self: flex-start;
+}
+
+.btnAdd:hover {
+  background: #f86825;
+}
+
+/* --- PANIER --- */
+.cart {
+  margin-top: 40px;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+  position: sticky;
+  bottom: 0;
+  max-width: 500px; /* optionnel pour limiter la largeur sur grand écran */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cartTitle {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.cartList {
+  list-style-type: disc;
+  padding-left: 20px;
+  max-height: 100px; /* un peu moins haut */
+  overflow-y: auto;
+  font-size: 0.95rem;
+}
+
+.cartTotal {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.btnOrder {
+  display: block;
+  margin: 15px auto 0;
+  background-color: rgb(206, 162, 19);
+  color: white;
+  border: none;
+  padding: 6px 12px; /* bouton plus petit */
+  border-radius: 6px;
+  font-size: 0.9rem; /* texte plus petit */
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.btnOrder:hover {
+  background-color: #f86825;
+}
+
+.btnCancel {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #ff4d4d;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.btnCancel:hover {
+  background-color: #cc0000;
+}
+

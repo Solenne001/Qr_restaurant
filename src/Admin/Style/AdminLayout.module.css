@@ -1,0 +1,13 @@
+.adminLayout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Le main content prend tout l'espace restant à gauche */
+.mainContent {
+  flex: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+  overflow-y: auto;
+}
