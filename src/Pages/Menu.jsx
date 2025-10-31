@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import style from "../Styles/Menu.module.css";
 import { CartContext } from "../context/CartContext";
-import QrScanner from "../Components/QR/QrScanner"; // ton composant existant
 
 const API_URL = "https://backendresto-production.up.railway.app";
 
@@ -13,28 +12,24 @@ const Menu = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // 🔹 Récupérer l'id de la table après scan
-  const handleScan = (scannedText) => {
-    if (!scannedText) return;
-    const parts = scannedText.split("/");
-    const table = parts[parts.length - 1];
-    setTableId(table);
-  };
+  const isLogged = !!localStorage.getItem("token"); // ✅ vérifier connexion
 
-  // 🔹 Charger le menu après scan
+  // ✅ Récupérer le numéro de table depuis l'URL si présent
   useEffect(() => {
-    if (!tableId) return;
+    const params = new URLSearchParams(window.location.search);
+    const table = params.get("table");
+    if (table) setTableId(table);
+  }, []);
 
+  // ✅ Charger les plats
+  useEffect(() => {
     const fetchDishes = async () => {
       setLoading(true);
       try {
         const res = await fetch(`${API_URL}/api/dishes`);
         const data = await res.json();
-        if (data.success && data.dishes.length > 0) {
-          setDishes(data.dishes);
-        } else {
-          setDishes([]);
-        }
+        if (data.success) setDishes(data.dishes);
+        else setDishes([]);
       } catch (err) {
         console.error("❌ Erreur fetchDishes :", err);
         setError("Impossible de charger le menu");
@@ -44,11 +39,11 @@ const Menu = () => {
     };
 
     fetchDishes();
-  }, [tableId]);
+  }, []);
 
-  // 🔹 Ajouter au panier
+  // ✅ Ajouter au panier
   const addToCart = (dish) => {
-    if (!tableId) return alert("⚠️ Veuillez scanner le QR code de votre table d'abord.");
+    if (!isLogged) return alert("⚠️ Vous devez vous connecter pour commander.");
 
     const exists = cart.find((item) => item.id === (dish.id || dish._id));
     if (exists) {
@@ -64,23 +59,13 @@ const Menu = () => {
     }
   };
 
-  const removeFromCart = (index) => setCart(cart.filter((_, i) => i !== index));
-
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-
-  // 🔹 Affichage
-  if (!tableId) {
-    return (
-      <div style={{ padding: "20px", textAlign: "center" }}>
-        <h2>Scanner le QR Code de votre table</h2>
-        <QrScanner onScan={handleScan} />
-      </div>
-    );
-  }
 
   return (
     <div className={style.menuContainer}>
-      <h1 className={style.menuTitle}>🍽️ Menu - Table {tableId}</h1>
+      <h1 className={style.menuTitle}>
+        🍽️ Menu {tableId ? `- Table ${tableId}` : ""}
+      </h1>
 
       {loading && <p>Chargement du menu...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
@@ -95,7 +80,11 @@ const Menu = () => {
               <h3>{dish.name}</h3>
               <p>{dish.description}</p>
               <p>{dish.price} €</p>
-              <button className={style.btnAdd} onClick={() => addToCart(dish)}>
+              <button
+                className={style.btnAdd}
+                onClick={() => addToCart(dish)}
+                disabled={!isLogged}
+              >
                 Ajouter
               </button>
             </div>
@@ -112,18 +101,20 @@ const Menu = () => {
             <ul className={style.cartList}>
               {cart.map((item, index) => (
                 <li key={index}>
-                  {item.name} - {item.price} € x {item.quantity} ={" "}
-                  {item.price * item.quantity} €
-                  <button className={style.btnCancel} onClick={() => removeFromCart(index)}>
-                    Annuler
-                  </button>
+                  {item.name} - {item.price} € x {item.quantity} = {item.price * item.quantity} €
                 </li>
               ))}
             </ul>
+
             <p>Total : {total} €</p>
-            <NavLink to="/cart" className={style.btnOrder}>
-              Passer commande
-            </NavLink>
+
+            {isLogged ? (
+              <NavLink to={`/cart${tableId ? `?table=${tableId}` : ""}`} className={style.btnOrder}>
+                Passer commande ✅
+              </NavLink>
+            ) : (
+              <p style={{ color: "red" }}>Connectez-vous pour passer commande</p>
+            )}
           </>
         )}
       </div>

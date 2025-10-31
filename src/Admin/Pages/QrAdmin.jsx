@@ -33,29 +33,31 @@ const QrAdmin = () => {
       return Swal.fire("Erreur", "Entre un numéro de table valide.", "error");
     }
 
-    const qrUrl = `${window.location.origin}/menu/${tableNumber}`;
+    // const qrUrl = `${window.location.origin}/menu/${tableNumber}`;
+    const qrUrl = `https://menuqr-alpha.vercel.app/menu/${tableNumber}`;
 
-    try {
-      const res = await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ tableNumber, qrUrl }),
-      });
 
-      const data = await res.json();
+     try {
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tableNumber, qrUrl }),
+    });
 
-      if (!data.success) {
-        return Swal.fire("Erreur", data.message || "Impossible de créer le QR", "error");
-      }
+    const data = await res.json();
 
-      setQrs((prev) => [data.qr, ...prev]);
-      setTableNumber("");
-      Swal.fire("Succès", "QR code créé avec succès !", "success");
-    } catch (err) {
-      console.error("❌ Erreur generateQr:", err);
-      Swal.fire("Erreur", "Problème serveur.", "error");
+    if (!data.success) {
+      return Swal.fire("Erreur", data.message || "Impossible de créer le QR", "error");
     }
-  };
+
+    setQrs((prev) => [data.qr, ...prev]);
+    setTableNumber("");
+    Swal.fire("Succès", "QR code créé avec succès !", "success");
+  } catch (err) {
+    console.error("❌ Erreur generateQr:", err);
+    Swal.fire("Erreur", "Problème serveur.", "error");
+  }
+};
 
   // 🗑️ Supprimer un QR
   const deleteQr = async (id) => {

@@ -5,7 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 // Pages client
 import Layout from "./Pages/Layout";
-import InfoClient from "./Pages/InfoClient";
 import Menu from "./Pages/Menu";
 import Cart from "./Pages/Cart";
 import Order from "./Pages/Order";
@@ -18,9 +17,9 @@ import Orders from "./Admin/Pages/Orders";
 import Login from "./Admin/Pages/Register";
 import QrAdmin from "./Admin/Pages/QrAdmin";
 
-// Context
+// Contexts
 import { CartProvider } from "./context/CartContext";
-import { AuthProvider } from "./context/AuthContext"; // ✅ ajouté ici
+import { AuthProvider } from "./context/AuthContext";
 
 const RequireAuth = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -35,24 +34,23 @@ function App() {
   });
 
   return (
-    <AuthProvider> {/* ✅ englobe toute l'app */}
+    <AuthProvider>
       <CartProvider>
         <Router>
-          <ToastContainer position="top-right" autoClose={120000} pauseOnHover />
+          <ToastContainer position="top-right" autoClose={8000} pauseOnHover />
 
           <Routes>
-            {/* Pages client */}
-            <Route index element={<InfoClient setClientInfo={setClientInfo} />} />
+            {/* ✅ MENU devient page principale */}
             <Route path="/" element={<Layout clientInfo={clientInfo} />}>
-              <Route path="menu" element={<Menu clientInfo={clientInfo} />} />
+              <Route index element={<Menu clientInfo={clientInfo} />} />
               <Route path="cart" element={<Cart clientInfo={clientInfo} />} />
               <Route path="order" element={<Order clientInfo={clientInfo} />} />
             </Route>
 
-            {/* Login admin */}
+            {/* Admin Login */}
             <Route path="/login" element={<Login />} />
 
-            {/* Pages admin protégées */}
+            {/* ✅ Routes Admin protégées */}
             <Route
               path="/admin"
               element={
@@ -61,13 +59,14 @@ function App() {
                 </RequireAuth>
               }
             >
+              <Route index element={<Navigate to="dashboard" replace />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="menu" element={<MenuManagement />} />
               <Route path="orders" element={<Orders />} />
               <Route path="qr" element={<QrAdmin />} />
             </Route>
 
-            {/* Redirection par défaut */}
+            {/* Redirection si mauvaise URL */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Router>
